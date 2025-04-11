@@ -3,22 +3,24 @@ package org.example.auth_spring_app.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.example.auth_spring_app.domain.dto.JwtAuthenticationResponse;
 import org.example.auth_spring_app.domain.dto.SignInRequest;
 import org.example.auth_spring_app.domain.dto.SignUpRequest;
+import org.example.auth_spring_app.service.AuthenticationService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.example.auth_spring_app.service.AuthenticationService;
 
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor
 @Tag(name = "Аутентификация")
 public class AuthController {
     private final AuthenticationService authenticationService;
+
+    public AuthController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     @Operation(summary = "Регистрация пользователя")
     @PostMapping("/sign-up")

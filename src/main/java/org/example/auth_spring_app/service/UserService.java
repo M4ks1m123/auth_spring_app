@@ -1,6 +1,5 @@
 package org.example.auth_spring_app.service;
 
-import lombok.RequiredArgsConstructor;
 import org.example.auth_spring_app.domain.model.Role;
 import org.example.auth_spring_app.domain.model.User;
 import org.example.auth_spring_app.repository.UserRepository;
@@ -10,9 +9,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
     private final UserRepository repository;
+
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
 
     /**
      * Сохранение пользователя
